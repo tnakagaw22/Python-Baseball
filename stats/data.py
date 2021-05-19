@@ -16,7 +16,8 @@ games.loc[games['multi5'] == '??', ['multi5']] = ''
 
 identifiers = games.multi2.str.extract(r'(.LS(\d{4})\d{5})')
 identifiers = identifiers.fillna(method='ffill')
-identifiers.rename(columns={0: 'game_id', 1: 'year'}, inplace=True)
+# identifiers.rename(columns={0: 'game_id', 1: 'year'}, inplace=True)
+identifiers.columns = ['game_id', 'year']
 
 games = pd.concat([games, identifiers], axis=1, sort=False)
 games = games.fillna(' ')
